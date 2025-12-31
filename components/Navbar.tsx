@@ -20,9 +20,8 @@ const tools = [
   { name: "Password", href: "/password-generator", icon: KeyRound },
   { name: "JSON", href: "/json-formatter", icon: Code2 },
   { name: "Base64", href: "/base64", icon: Binary },
-  { name: "Lorem", href: "/lorem-ipsum", icon: FileText },
   { name: "URL", href: "/url-encoder", icon: Link2 },
-  { name: "QR", href: "/qr-code", icon: QrCode },
+  { name: "QR", href: "/qrcode", icon: QrCode },
 ];
 
 export default function Navbar() {

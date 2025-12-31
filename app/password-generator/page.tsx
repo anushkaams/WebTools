@@ -77,7 +77,7 @@ export default function PasswordGeneratorPage() {
           </li>
         </ul>
 
-        <div className="bg-white rounded-2xl shadow-lg p-6 space-y-6">
+        <div className="bg-white max-w-3xl rounded-2xl shadow-lg p-6 space-y-6">
           {/* Password Output */}
           <div className="flex items-center gap-2">
             <input

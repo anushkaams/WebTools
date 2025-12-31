@@ -62,7 +62,7 @@ export default function Home() {
               title="QR Code Generator"
               description="Generate QR codes for text or URLs."
               icon={QrCode}
-              href="/qr-code"
+              href="/qrcode"
             />
           </div>
         </div>
