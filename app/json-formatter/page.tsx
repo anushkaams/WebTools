@@ -47,7 +47,7 @@ export default function JsonFormatterPage() {
         <p className="text-gray-600 mb-6 leading-relaxed">
           Format, validate, and minify JSON instantly using this free online
           JSON formatter. Perfect for developers who want to clean up JSON data,
-          validate syntax, or convert minified JSON into a readable format — all
+          validate syntax, or convert minified JSON into a readable format - all
           directly in the browser with no uploads required.
         </p>
 

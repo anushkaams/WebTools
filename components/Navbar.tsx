@@ -22,6 +22,7 @@ const tools = [
   { name: "Base64", href: "/base64", icon: Binary },
   { name: "URL", href: "/url-encoder", icon: Link2 },
   { name: "QR", href: "/qrcode", icon: QrCode },
+  { name: "Lorem Ipsum", href: "/lorem-ipsum", icon: QrCode },
 ];
 
 export default function Navbar() {
