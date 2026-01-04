@@ -44,7 +44,7 @@ export default function Navbar() {
               <span className="h-8 w-8 rounded-lg bg-gradient-to-br from-blue-600 to-indigo-600 text-white grid place-items-center">
                 {}
               </span>
-              WebTools
+              WebToolsSpace
             </Link>
 
             {/* Desktop Nav */}

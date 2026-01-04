@@ -6,12 +6,12 @@ export default function Home() {
     <>
       {/* HERO */}
       <section className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-blue-50 via-white to-gray-100" />
+        <div className="absolute inset-0 bg-linear-to-b from-blue-50 via-white to-gray-100" />
         <div className="relative max-w-4xl mx-auto px-6 py-16 text-center">
           {" "}
           {/* was py-32 */}
           <h1 className="text-5xl sm:text-6xl font-extrabold tracking-tight text-gray-900">
-            WebTools
+            WebToolsSpace
           </h1>
           <p className="mt-4 text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto">
             Fast, reliable, and privacy-friendly tools for developers and

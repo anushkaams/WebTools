@@ -7,7 +7,7 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const footerLinks = [
   { name: "About", href: "/about" },
-  { name: "Contact", href: "/contact" },
+  { name: "Contact Us", href: "/contact" },
   { name: "Privacy", href: "/privacy" },
   { name: "Terms", href: "/terms" },
 ];
@@ -26,7 +26,7 @@ export default function Footer() {
         <div className="relative rounded-2xl bg-white/70 backdrop-blur-xl shadow-lg border border-white/40">
           <div className="flex flex-col md:flex-row items-center justify-between px-6 py-4">
             <span className="text-sm font-semibold mb-2 md:mb-0">
-              © 2025 WebTools. All rights reserved.
+              © 2025 WebToolsSpace. All rights reserved.
             </span>
 
             {/* Desktop Links */}
