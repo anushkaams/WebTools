@@ -42,7 +42,7 @@ export default function Base64EncoderPage() {
 
   return (
     <main className="min-h-screen bg-gray-50">
-      <div className="max-w-5xl mx-auto px-6 py-16">
+      <div className="max-w-4xl mx-auto px-6 py-16">
         {/* SEO Heading */}
         <h1 className="text-4xl font-bold text-gray-900 mb-4">
           Online Base64 Encoder & Decoder

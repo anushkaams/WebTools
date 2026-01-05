@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { RefreshCcw, Copy, Check } from "lucide-react";
+import Link from "next/link";
 
 export default function PasswordGeneratorPage() {
   const [length, setLength] = useState(16);
@@ -76,6 +77,23 @@ export default function PasswordGeneratorPage() {
             <span>Fully client-side for privacy and security</span>
           </li>
         </ul>
+
+        {/* Blog Internal Link */}
+        <div className="mb-10 max-w-3xl rounded-xl border border-blue-100 bg-blue-50 p-5">
+          <h2 className="text-lg font-semibold text-gray-900 mb-2">
+            Want to learn how to use passwords safely?
+          </h2>
+          <p className="text-gray-700 mb-3">
+            Creating a strong password is only the first step. Learn best
+            practices to keep your accounts secure and avoid common mistakes.
+          </p>
+          <Link
+            href="/blog/how-to-create-strong-passwords"
+            className="inline-flex items-center gap-2 text-blue-600 font-semibold hover:underline"
+          >
+            Read: How to Create Strong & Secure Passwords →
+          </Link>
+        </div>
 
         <div className="bg-white max-w-3xl rounded-2xl shadow-lg p-6 space-y-6">
           {/* Password Output */}

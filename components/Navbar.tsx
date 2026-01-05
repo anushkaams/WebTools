@@ -15,6 +15,7 @@ import {
   Menu,
   X,
   Wrench,
+  BookOpen,
 } from "lucide-react";
 
 const tools = [
@@ -24,6 +25,8 @@ const tools = [
   { name: "URL", href: "/url-encoder", icon: Link2 },
   { name: "QR", href: "/qrcode", icon: QrCode },
   { name: "Lorem Ipsum", href: "/lorem-ipsum", icon: QrCode },
+  // ✅ Blog
+  { name: "Blog", href: "/blog", icon: BookOpen },
 ];
 
 export default function Navbar() {
@@ -51,7 +54,9 @@ export default function Navbar() {
             {/* Desktop Nav */}
             <nav className="hidden md:flex relative items-center gap-1">
               {tools.map((tool) => {
-                const active = pathname === tool.href;
+                const active =
+                  pathname === tool.href ||
+                  (tool.href === "/blog" && pathname.startsWith("/blog"));
                 const Icon = tool.icon;
 
                 return (
@@ -114,7 +119,9 @@ export default function Navbar() {
                 >
                   {tools.map((tool) => {
                     const Icon = tool.icon;
-                    const active = pathname === tool.href;
+                    const active =
+                      pathname === tool.href ||
+                      (tool.href === "/blog" && pathname.startsWith("/blog"));
 
                     return (
                       <motion.div

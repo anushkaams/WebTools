@@ -23,6 +23,7 @@ html,
 body {
   height: 100%;
   @apply min-h-screen;
+  overflow-x: hidden;
 }
 
 body {
