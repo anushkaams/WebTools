@@ -1,6 +1,7 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import "./globals.css";
+import Head from "next/head";
 
 export default function RootLayout({
   children,
@@ -9,6 +10,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <Head>
+        <title>WebTools</title>
+        <link rel="icon" href="/favicon.ico" /> {/* Your exported logo here */}
+      </Head>
       <body className="min-h-screen flex flex-col">
         <Navbar />
 

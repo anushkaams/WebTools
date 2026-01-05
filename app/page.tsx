@@ -21,7 +21,7 @@ export default function Home() {
       </section>
 
       {/* TOOLS */}
-      <section className="bg-gray-100 py-16">
+      <section className="bg-gray-100 py-4">
         {" "}
         {/* was py-28 */}
         <div className="max-w-6xl mx-auto px-6">
