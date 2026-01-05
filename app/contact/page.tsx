@@ -31,27 +31,6 @@ export default function ContactPage() {
             .
           </p>
         </div>
-
-        {/* Follow Us Section */}
-        <section className="space-y-2">
-          <h2 className="text-2xl font-semibold mb-2">Follow Us</h2>
-          <p>
-            Follow us on social media to stay updated with new tools and
-            improvements.
-          </p>
-
-          {/* Only include REAL links. Remove this section if you don't have them yet */}
-          <div className="flex space-x-4 mt-2">
-            <a
-              href="https://twitter.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-500 hover:underline"
-            >
-              Twitter
-            </a>
-          </div>
-        </section>
       </div>
     </Layout>
   );

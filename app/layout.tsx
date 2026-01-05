@@ -9,9 +9,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>
+      <body className="min-h-screen flex flex-col">
         <Navbar />
-        <main className="pt-28">{children}</main>
+
+        {/* Main grows to push footer down */}
+        <main className="flex-1 pt-24">{children}</main>
+
         <Footer />
       </body>
     </html>

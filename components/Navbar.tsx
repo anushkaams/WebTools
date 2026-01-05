@@ -14,6 +14,7 @@ import {
   QrCode,
   Menu,
   X,
+  Wrench,
 } from "lucide-react";
 
 const tools = [
@@ -42,7 +43,7 @@ export default function Navbar() {
             {/* Logo */}
             <Link href="/" className="flex items-center gap-2 font-semibold">
               <span className="h-8 w-8 rounded-lg bg-gradient-to-br from-blue-600 to-indigo-600 text-white grid place-items-center">
-                {}
+                <Wrench className="h-4 w-4" />
               </span>
               WebToolsSpace
             </Link>
