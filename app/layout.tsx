@@ -1,7 +1,6 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import "./globals.css";
-import Head from "next/head";
 import Script from "next/script";
 
 export default function RootLayout({
@@ -11,7 +10,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <Head>
+      <head>
         <Script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9431801220202175"
@@ -20,7 +19,7 @@ export default function RootLayout({
         ></Script>
         <title>WebTools</title>
         <link rel="icon" href="/favicon.ico" /> {/* Your exported logo here */}
-      </Head>
+      </head>
       <body className="min-h-screen flex flex-col">
         <Navbar />
 
