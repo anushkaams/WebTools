@@ -14,11 +14,12 @@ export default function RootLayout({
         <title>WebTools</title>
         <link rel="icon" href="/favicon.ico" /> {/* Your exported logo here */}
         <meta name="google-adsense-account" content="ca-pub-8839810575741990" />
-        <script
+        <Script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8839810575741990"
           crossOrigin="anonymous"
-        ></script>
+          strategy="afterInteractive"
+        ></Script>
       </head>
       <body className="min-h-screen flex flex-col">
         <Navbar />
