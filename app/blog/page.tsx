@@ -31,7 +31,7 @@ export default function BlogPage() {
   return (
     <main className="max-w-4xl mx-auto px-6 py-16 space-y-12">
       {/* Page Header */}
-      <header className="text-center space-y-3">
+      <header className="text-left space-y-3">
         <h1 className="text-4xl font-bold text-gray-900">Blog</h1>
         <p className="text-lg text-gray-600">
           Guides and articles to help you stay secure and productive online.
