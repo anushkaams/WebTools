@@ -13,7 +13,7 @@ export default function RootLayout({
       <head>
         <title>WebTools</title>
         <link rel="icon" href="/favicon.ico" /> {/* Your exported logo here */}
-        <meta name="google-adsense-account" content="ca-pub-9431801220202175" />
+        <meta name="google-adsense-account" content="ca-pub-8839810575741990" />
       </head>
       <body className="min-h-screen flex flex-col">
         <Navbar />
