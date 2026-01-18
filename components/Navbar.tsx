@@ -4,7 +4,6 @@ import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { useTheme } from "next-themes";
 import {
   KeyRound,
   Code2,
@@ -18,76 +17,235 @@ import {
   BookOpen,
 } from "lucide-react";
 
-const tools = [
-  { name: "Password", href: "/password-generator", icon: KeyRound },
-  { name: "JSON", href: "/json-formatter", icon: Code2 },
-  { name: "Base64", href: "/base64", icon: Binary },
-  { name: "URL", href: "/url-encoder", icon: Link2 },
-  { name: "QR", href: "/qrcode", icon: QrCode },
-  { name: "Lorem Ipsum", href: "/lorem-ipsum", icon: QrCode },
-  // ✅ Blog
-  { name: "Blog", href: "/blog", icon: BookOpen },
+/* =======================
+   NAV CONFIG
+======================= */
+
+const navCategories = [
+  {
+    name: "Security",
+    icon: KeyRound,
+    tools: [
+      {
+        name: "Password Generator",
+        href: "/tools/security/password-generator",
+        icon: KeyRound,
+      },
+    ],
+  },
+  {
+    name: "Developer",
+    icon: Code2,
+    tools: [
+      {
+        name: "JSON Formatter",
+        href: "/tools/developer/json-formatter",
+        icon: Code2,
+      },
+      {
+        name: "Base64 Encoder",
+        href: "/tools/developer/base64",
+        icon: Binary,
+      },
+      {
+        name: "URL Encoder",
+        href: "/tools/developer/url-encoder",
+        icon: Link2,
+      },
+    ],
+  },
+  {
+    name: "Utility",
+    icon: QrCode,
+    tools: [
+      {
+        name: "QR Code Generator",
+        href: "/tools/utility/qrcode",
+        icon: QrCode,
+      },
+      {
+        name: "Lorem Ipsum",
+        href: "/tools/utility/lorem-ipsum",
+        icon: FileText,
+      },
+    ],
+  },
 ];
 
+const staticLinks = [{ name: "Blog", href: "/blog", icon: BookOpen }];
+
+/* =======================
+   ANIMATIONS
+======================= */
+
+const dropdownVariants = {
+  hidden: {
+    opacity: 0,
+    y: 10,
+    scale: 0.96,
+    pointerEvents: "none",
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    pointerEvents: "auto",
+    transition: {
+      duration: 0.25,
+      ease: "easeOut",
+      staggerChildren: 0.06,
+    },
+  },
+  exit: {
+    opacity: 0,
+    y: 8,
+    scale: 0.96,
+    transition: { duration: 0.15 },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 6 },
+  visible: { opacity: 1, y: 0 },
+};
+
+/* =======================
+   NAVBAR
+======================= */
+
 export default function Navbar() {
-  const [open, setOpen] = useState(false);
   const pathname = usePathname();
-  const { theme, setTheme } = useTheme();
+  const [open, setOpen] = useState(false);
+  const [hovered, setHovered] = useState<string | null>(null);
 
   return (
     <motion.header
-      initial={{ y: -20, opacity: 0 }}
+      initial={{ y: -24, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      className="fixed top-4 inset-x-0 z-50"
+      className="fixed inset-x-0 top-4 z-50"
     >
-      <div className="mx-auto max-w-6xl px-4">
-        <div className="relative rounded-2xl bg-white/70 backdrop-blur-xl shadow-lg border border-white/40">
+      <div className="mx-auto max-w-7xl px-4">
+        <div className="relative rounded-2xl bg-white/70 backdrop-blur-xl border border-white/40 shadow-[0_20px_50px_-15px_rgba(0,0,0,0.25)]">
           <div className="flex items-center justify-between px-6 py-3">
             {/* Logo */}
-            <Link href="/" className="flex items-center gap-2 font-semibold">
-              <span className="h-8 w-8 rounded-lg bg-gradient-to-br from-blue-600 to-indigo-600 text-white grid place-items-center">
-                <Wrench className="h-4 w-4" />
+            <Link href="/" className="flex items-center gap-3 font-semibold">
+              <span className="relative grid h-9 w-9 place-items-center rounded-xl bg-gradient-to-br from-blue-600 to-indigo-600 text-white shadow-lg">
+                <Wrench size={16} />
+                <span className="absolute inset-0 rounded-xl bg-white/20 blur-md" />
               </span>
-              WebToolsSpace
+              <span className="tracking-tight">WebToolsSpace</span>
             </Link>
 
-            {/* Desktop Nav */}
-            <nav className="hidden md:flex relative items-center gap-1">
-              {tools.map((tool) => {
-                const active =
-                  pathname === tool.href ||
-                  (tool.href === "/blog" && pathname.startsWith("/blog"));
-                const Icon = tool.icon;
+            {/* ================= DESKTOP NAV ================= */}
+            <nav className="hidden md:flex items-center gap-2 relative">
+              {navCategories.map((category) => {
+                const active = pathname.startsWith(
+                  `/tools/${category.name.toLowerCase()}`
+                );
+                const Icon = category.icon;
 
                 return (
-                  <Link key={tool.href} href={tool.href} className="relative">
-                    {active && (
-                      <motion.span
-                        layoutId="active-pill"
-                        className="absolute inset-0 rounded-full bg-blue-600/90"
-                      />
-                    )}
-
-                    <motion.div
-                      whileHover={{ scale: 1.08 }}
-                      whileTap={{ scale: 0.95 }}
-                      className={`relative z-10 flex items-center gap-2 px-4 py-2 rounded-full text-sm transition
+                  <div
+                    key={category.name}
+                    className="relative"
+                    onMouseEnter={() => setHovered(category.name)}
+                    onMouseLeave={() => setHovered(null)}
+                  >
+                    <button
+                      className={`relative px-4 py-2 flex items-center gap-2 text-sm font-medium transition
                         ${
                           active
-                            ? "text-white"
+                            ? "text-blue-600"
                             : "text-gray-700 hover:text-black"
                         }
                       `}
                     >
                       <Icon size={16} />
-                      {tool.name}
-                    </motion.div>
+                      {category.name}
+
+                      {active && (
+                        <motion.span
+                          layoutId="nav-underline"
+                          className="absolute -bottom-1 left-3 right-3 h-[2px] rounded-full bg-blue-600"
+                        />
+                      )}
+                    </button>
+
+                    {/* Hover bridge */}
+                    <div className="absolute left-0 top-full h-4 w-full" />
+
+                    <AnimatePresence>
+                      {hovered === category.name && (
+                        <motion.div
+                          variants={dropdownVariants}
+                          initial="hidden"
+                          animate="visible"
+                          exit="exit"
+                          className="absolute left-0 top-full mt-2 w-72 rounded-2xl bg-white shadow-xl border p-2"
+                        >
+                          {category.tools.map((tool) => {
+                            const ToolIcon = tool.icon;
+                            const isActive = pathname === tool.href;
+
+                            return (
+                              <motion.div
+                                key={tool.href}
+                                variants={itemVariants}
+                              >
+                                <Link
+                                  href={tool.href}
+                                  className={`flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm transition
+                                    ${
+                                      isActive
+                                        ? "bg-blue-600 text-white"
+                                        : "hover:bg-blue-50 text-gray-700 hover:text-blue-700"
+                                    }
+                                  `}
+                                >
+                                  <ToolIcon size={16} />
+                                  {tool.name}
+                                </Link>
+                              </motion.div>
+                            );
+                          })}
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                );
+              })}
+
+              {/* Blog */}
+              {staticLinks.map(({ name, href, icon: Icon }) => {
+                const active = pathname.startsWith(href);
+
+                return (
+                  <Link
+                    key={href}
+                    href={href}
+                    className={`relative px-4 py-2 flex items-center gap-2 text-sm font-medium
+                      ${
+                        active
+                          ? "text-blue-600"
+                          : "text-gray-700 hover:text-black"
+                      }
+                    `}
+                  >
+                    <Icon size={16} />
+                    {name}
+
+                    {active && (
+                      <motion.span
+                        layoutId="nav-underline"
+                        className="absolute -bottom-1 left-3 right-3 h-[2px] rounded-full bg-blue-600"
+                      />
+                    )}
                   </Link>
                 );
               })}
             </nav>
 
-            {/* Mobile Toggle */}
+            {/* ================= MOBILE TOGGLE ================= */}
             <button
               onClick={() => setOpen(!open)}
               className="md:hidden rounded-xl p-2 hover:bg-black/5"
@@ -96,7 +254,7 @@ export default function Navbar() {
             </button>
           </div>
 
-          {/* Mobile Menu */}
+          {/* ================= MOBILE MENU ================= */}
           <AnimatePresence>
             {open && (
               <motion.div
@@ -106,49 +264,47 @@ export default function Navbar() {
                 transition={{ duration: 0.3, ease: "easeOut" }}
                 className="md:hidden overflow-hidden"
               >
-                <motion.div
-                  initial="hidden"
-                  animate="show"
-                  variants={{
-                    hidden: {},
-                    show: {
-                      transition: { staggerChildren: 0.06 },
-                    },
-                  }}
-                  className="flex flex-col gap-2 px-6 pb-4"
-                >
-                  {tools.map((tool) => {
-                    const Icon = tool.icon;
-                    const active =
-                      pathname === tool.href ||
-                      (tool.href === "/blog" && pathname.startsWith("/blog"));
+                <div className="px-6 pb-6 space-y-6">
+                  {navCategories.map((category) => (
+                    <div key={category.name}>
+                      <p className="mb-2 text-xs font-semibold text-gray-500">
+                        {category.name}
+                      </p>
 
-                    return (
-                      <motion.div
-                        key={tool.href}
-                        variants={{
-                          hidden: { opacity: 0, y: 10 },
-                          show: { opacity: 1, y: 0 },
-                        }}
-                      >
-                        <Link
-                          href={tool.href}
-                          onClick={() => setOpen(false)}
-                          className={`flex items-center gap-3 px-4 py-3 rounded-xl text-sm
-                            ${
-                              active
-                                ? "bg-black text-white"
-                                : "hover:bg-black/5"
-                            }
-                          `}
-                        >
-                          <Icon size={18} />
-                          {tool.name}
-                        </Link>
-                      </motion.div>
-                    );
-                  })}
-                </motion.div>
+                      {category.tools.map((tool) => {
+                        const Icon = tool.icon;
+                        const active = pathname === tool.href;
+
+                        return (
+                          <Link
+                            key={tool.href}
+                            href={tool.href}
+                            onClick={() => setOpen(false)}
+                            className={`flex items-center gap-3 px-4 py-3 rounded-xl text-sm transition
+                              ${
+                                active
+                                  ? "bg-blue-600 text-white"
+                                  : "hover:bg-blue-50 text-gray-700 hover:text-blue-700"
+                              }
+                            `}
+                          >
+                            <Icon size={18} />
+                            {tool.name}
+                          </Link>
+                        );
+                      })}
+                    </div>
+                  ))}
+
+                  <Link
+                    href="/blog"
+                    onClick={() => setOpen(false)}
+                    className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm hover:bg-black/5"
+                  >
+                    <BookOpen size={18} />
+                    Blog
+                  </Link>
+                </div>
               </motion.div>
             )}
           </AnimatePresence>

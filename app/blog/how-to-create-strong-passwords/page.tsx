@@ -77,7 +77,7 @@ export default function Page() {
           Create strong, random passwords with one click – no signup required.
         </p>
         <a
-          href="/password-generator"
+          href="../tools/security/password-generator"
           className="inline-block rounded-lg bg-blue-600 px-6 py-3 text-lg font-medium text-white hover:bg-blue-700 transition"
         >
           Try Password Generator →
