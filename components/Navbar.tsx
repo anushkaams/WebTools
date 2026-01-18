@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, Variants } from "framer-motion";
 import {
   KeyRound,
   Code2,
@@ -75,10 +75,10 @@ const navCategories = [
 const staticLinks = [{ name: "Blog", href: "/blog", icon: BookOpen }];
 
 /* =======================
-   ANIMATIONS
+   ANIMATIONS (FIXED)
 ======================= */
 
-const dropdownVariants = {
+const dropdownVariants: Variants = {
   hidden: {
     opacity: 0,
     y: 10,
@@ -92,7 +92,7 @@ const dropdownVariants = {
     pointerEvents: "auto",
     transition: {
       duration: 0.25,
-      ease: "easeOut",
+      ease: [0.16, 1, 0.3, 1],
       staggerChildren: 0.06,
     },
   },
@@ -100,13 +100,24 @@ const dropdownVariants = {
     opacity: 0,
     y: 8,
     scale: 0.96,
-    transition: { duration: 0.15 },
+    pointerEvents: "none",
+    transition: {
+      duration: 0.15,
+      ease: [0.4, 0, 1, 1],
+    },
   },
 };
 
-const itemVariants = {
+const itemVariants: Variants = {
   hidden: { opacity: 0, y: 6 },
-  visible: { opacity: 1, y: 0 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.15,
+      ease: [0.16, 1, 0.3, 1],
+    },
+  },
 };
 
 /* =======================
@@ -122,6 +133,7 @@ export default function Navbar() {
     <motion.header
       initial={{ y: -24, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
       className="fixed inset-x-0 top-4 z-50"
     >
       <div className="mx-auto max-w-7xl px-4">
@@ -171,7 +183,6 @@ export default function Navbar() {
                       )}
                     </button>
 
-                    {/* Hover bridge */}
                     <div className="absolute left-0 top-full h-4 w-full" />
 
                     <AnimatePresence>
@@ -215,7 +226,6 @@ export default function Navbar() {
                 );
               })}
 
-              {/* Blog */}
               {staticLinks.map(({ name, href, icon: Icon }) => {
                 const active = pathname.startsWith(href);
 
@@ -261,7 +271,10 @@ export default function Navbar() {
                 initial={{ height: 0, opacity: 0 }}
                 animate={{ height: "auto", opacity: 1 }}
                 exit={{ height: 0, opacity: 0 }}
-                transition={{ duration: 0.3, ease: "easeOut" }}
+                transition={{
+                  duration: 0.3,
+                  ease: [0.16, 1, 0.3, 1],
+                }}
                 className="md:hidden overflow-hidden"
               >
                 <div className="px-6 pb-6 space-y-6">
