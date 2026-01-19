@@ -75,16 +75,11 @@ const navCategories = [
 const staticLinks = [{ name: "Blog", href: "/blog", icon: BookOpen }];
 
 /* =======================
-   ANIMATIONS (FIXED)
+   ANIMATIONS
 ======================= */
 
 const dropdownVariants: Variants = {
-  hidden: {
-    opacity: 0,
-    y: 10,
-    scale: 0.96,
-    pointerEvents: "none",
-  },
+  hidden: { opacity: 0, y: 10, scale: 0.96, pointerEvents: "none" },
   visible: {
     opacity: 1,
     y: 0,
@@ -101,10 +96,7 @@ const dropdownVariants: Variants = {
     y: 8,
     scale: 0.96,
     pointerEvents: "none",
-    transition: {
-      duration: 0.15,
-      ease: [0.4, 0, 1, 1],
-    },
+    transition: { duration: 0.15, ease: [0.4, 0, 1, 1] },
   },
 };
 
@@ -113,15 +105,12 @@ const itemVariants: Variants = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: {
-      duration: 0.15,
-      ease: [0.16, 1, 0.3, 1],
-    },
+    transition: { duration: 0.15, ease: [0.16, 1, 0.3, 1] },
   },
 };
 
 /* =======================
-   NAVBAR
+   NAVBAR COMPONENT
 ======================= */
 
 export default function Navbar() {
@@ -253,6 +242,16 @@ export default function Navbar() {
                   </Link>
                 );
               })}
+
+              {/* ================= BUY ME A COFFEE BUTTON ================= */}
+              <a
+                href="https://www.buymeacoffee.com/anushkaams"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="ml-3 inline-flex items-center gap-2 rounded-xl bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700 transition shadow-sm"
+              >
+                ☕ Support
+              </a>
             </nav>
 
             {/* ================= MOBILE TOGGLE ================= */}
@@ -271,10 +270,7 @@ export default function Navbar() {
                 initial={{ height: 0, opacity: 0 }}
                 animate={{ height: "auto", opacity: 1 }}
                 exit={{ height: 0, opacity: 0 }}
-                transition={{
-                  duration: 0.3,
-                  ease: [0.16, 1, 0.3, 1],
-                }}
+                transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
                 className="md:hidden overflow-hidden"
               >
                 <div className="px-6 pb-6 space-y-6">
@@ -317,6 +313,25 @@ export default function Navbar() {
                     <BookOpen size={18} />
                     Blog
                   </Link>
+
+                  {/* ================= BUY ME A COFFEE BUTTON MOBILE ================= */}
+                  <a
+                    href="https://www.buymeacoffee.com/anushkaams"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="
+    flex items-center gap-1 px-3 py-1.5
+    rounded-full
+    bg-amber-200/80
+    text-gray-900 font-medium text-sm
+    hover:bg-amber-300/90
+    hover:scale-105
+    transition duration-200 ease-out
+    shadow-sm
+  "
+                  >
+                    ☕ Support
+                  </a>
                 </div>
               </motion.div>
             )}
