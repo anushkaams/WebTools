@@ -58,6 +58,20 @@ export default function RootLayout({
           crossOrigin="anonymous"
           strategy="afterInteractive"
         />
+
+        {/* Buy Me a Coffee */}
+        <Script
+          src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js"
+          strategy="afterInteractive"
+          data-name="BMC-Widget"
+          data-id="anushkaams"
+          data-description="Support WebToolsSpace ☕"
+          data-message="If you like these tools, you can support the project!"
+          data-color="#2563eb"
+          data-position="Right"
+          data-x_margin="18"
+          data-y_margin="18"
+        />
       </body>
     </html>
   );

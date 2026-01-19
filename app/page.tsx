@@ -32,37 +32,37 @@ export default function Home() {
               title="Password Generator"
               description="Create strong, secure passwords instantly."
               icon={KeyRound}
-              href="/password-generator"
+              href="tools/security/password-generator"
             />
             <ToolCard
               title="JSON Formatter"
               description="Format and validate JSON effortlessly."
               icon={Code2}
-              href="/json-formatter"
+              href="tools/developer/json-formatter"
             />
             <ToolCard
               title="Lorem Ipsum Generator"
               description="Generate placeholder text for designs."
               icon={FileText}
-              href="/lorem-ipsum"
+              href="tools/utility/lorem-ipsum"
             />
             <ToolCard
               title="Base64 Encoder"
               description="Encode text into Base64 format."
               icon={Binary}
-              href="/base64"
+              href="tools/developer/base64"
             />
             <ToolCard
               title="URL Encoder / Decoder"
               description="Encode or decode URLs instantly."
               icon={Link2}
-              href="/url-encoder"
+              href="tools/developer/url-encoder"
             />
             <ToolCard
               title="QR Code Generator"
               description="Generate QR codes for text or URLs."
               icon={QrCode}
-              href="/qrcode"
+              href="tools/utility/qrcode"
             />
           </div>
         </div>
