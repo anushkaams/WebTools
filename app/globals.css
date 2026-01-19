@@ -51,3 +51,7 @@ a {
   outline: 2px solid rgb(59 130 246); /* blue-500 */
   outline-offset: 2px;
 }
+
+#bmc-wbtn {
+  z-index: 99999 !important;
+}
