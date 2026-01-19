@@ -4,6 +4,7 @@ import "./globals.css";
 import Script from "next/script";
 import Head from "next/head";
 import AnalyticsTracker from "./AnalyticsTracker";
+import BuyMeACoffee from "@/components/BuyMeACoffee";
 
 export const metadata = {
   title: "WebTools",
@@ -48,7 +49,7 @@ export default function RootLayout({
         <Navbar />
 
         <main className="flex-1 pt-24">{children}</main>
-
+        <BuyMeACoffee />
         <Footer />
 
         {/* Google Adsense */}
@@ -57,21 +58,6 @@ export default function RootLayout({
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8839810575741990"
           crossOrigin="anonymous"
           strategy="afterInteractive"
-        />
-
-        {/* Buy Me a Coffee */}
-        <Script
-          src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js"
-          strategy="afterInteractive"
-          data-name="BMC-Widget"
-          data-id="anushkaams"
-          data-description="Support WebToolsSpace ☕"
-          data-message="If you like these tools, you can support the project!"
-          data-color="#2563eb"
-          data-position="Right"
-          data-x_margin="18"
-          data-y_margin="18"
-          data-z-index="99999"
         />
       </body>
     </html>
