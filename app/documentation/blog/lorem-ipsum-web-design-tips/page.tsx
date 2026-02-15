@@ -28,7 +28,7 @@ export default function Page() {
                     <h2 className="text-2xl font-semibold text-gray-900">Using WebToolsSpace Lorem Ipsum Generator</h2>
                     <p>
                         Visit the{" "}
-                        <a href="../tools/utility/lorem-ipsum" className="text-blue-600 underline font-semibold">
+                        <a href="../../tools/utility/lorem-ipsum" className="text-blue-600 underline font-semibold">
                             Lorem Ipsum Generator
                         </a>
                         , choose the number of paragraphs or words, and generate placeholder text instantly.
@@ -51,7 +51,7 @@ export default function Page() {
                     Create realistic placeholder text for your designs with WebToolsSpace.
                 </p>
                 <a
-                    href="../tools/utility/lorem-ipsum"
+                    href="../../tools/utility/lorem-ipsum"
                     className="inline-block rounded-lg bg-blue-600 px-6 py-3 text-lg font-medium text-white hover:bg-blue-700 transition"
                 >
                     Try Lorem Ipsum Generator →
