@@ -44,11 +44,11 @@ export default function RootLayout({
           `}
         </Script>
       </Head>
-      <body className="min-h-screen flex flex-col">
+      <body className="min-h-screen flex flex-col bg-gray-50">
         <AnalyticsTracker />
         <Navbar />
 
-        <main className="flex-1 pt-24">{children}</main>
+        <main className="flex-1 mt-20">{children}</main>
         <BuyMeACoffee />
         <Footer />
 

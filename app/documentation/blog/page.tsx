@@ -12,20 +12,51 @@ export default function BlogPage() {
       title: "How to Create Strong Passwords Online",
       description:
         "Learn simple rules and tools to create strong passwords and keep your accounts secure.",
-      href: "/blog/how-to-create-strong-passwords",
+      href: "/documentation/blog/how-to-create-strong-passwords",
     },
     {
       title: "Why Random Password Generators Are Safer",
       description:
         "Discover why random password generators are more secure than manually created passwords.",
-      href: "/blog/why-random-password-generators-are-safer",
+      href: "/documentation/blog/why-random-password-generators-are-safer",
     },
     {
       title: "Online Tools That Improve Security and Productivity",
       description:
         "Explore online tools that enhance security and boost productivity in daily workflows.",
-      href: "/blog/online-tools-for-security-and-productivity",
+      href: "/documentation/blog/online-tools-for-security-and-productivity",
     },
+    {
+      title: "How to Generate QR Codes for Your Business Cards Online",
+      description:
+        "Learn how to create QR codes for your business cards online for free using WebToolsSpace's QR code generator.",
+      href: "/documentation/blog/generate-qr-codes-for-business-cards",
+    },
+    {
+      title: "Base64 Encoding Made Easy: Free Online Tools for Developers",
+      description:
+          "Step-by-step guide to encode and decode text with Base64 using WebToolsSpace tools for secure web development.",
+      href: "/documentation/blog/base64-encoding-online-tools",
+    },
+    {
+      title: "The Ultimate Guide to Formatting JSON Online",
+      description:
+          "Learn how to format JSON easily with WebToolsSpace’s online JSON formatter for better readability and debugging.",
+      href: "/documentation/blog/format-json-online-guide",
+    },
+    {
+      title: "How to Encode URLs to Avoid Broken Links",
+      description:
+          "Prevent broken URLs by using WebToolsSpace's URL encoder and decoder tools with this step-by-step tutorial.",
+      href: "/documentation/blog/url-encoding-online-guide",
+    },
+    {
+      title: "5 Ways Lorem Ipsum Can Improve Your Web Design Projects",
+      description:
+          "Discover how WebToolsSpace’s Lorem Ipsum generator helps web designers create better layouts and prototypes.",
+      href: "/documentation/blog/lorem-ipsum-web-design-tips",
+    }
+
   ];
 
   return (
