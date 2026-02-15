@@ -1,12 +1,4 @@
-import {
-    KeyRound,
-    Code2,
-    FileText,
-    Binary,
-    Link2,
-    QrCode,
-    Type,
-} from "lucide-react";
+import {Binary, BookOpen, Code2, FileText, KeyRound, Link2, QrCode, Type,} from "lucide-react";
 
 export type Tool = {
     title: string;
@@ -37,6 +29,11 @@ export const toolCategories: ToolCategory[] = [
         id: "utility",
         title: "Utility Tools",
         description: "General-purpose productivity tools.",
+    },
+    {
+        id: "documentation",
+        title: "Documentation",
+        description: "Docs and guides"
     },
 ];
 
@@ -89,5 +86,12 @@ export const tools: Tool[] = [
         icon: Type,
         href: "/tools/utility/word-character-counter",
         category: "utility",
+    },
+    {
+        title: "Blog",
+        href: "/documentation/blog",
+        icon: BookOpen,
+        category: "documentation",
+        description: "Our blog articles"
     },
 ];
