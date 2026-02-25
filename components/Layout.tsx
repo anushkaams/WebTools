@@ -1,6 +1,7 @@
 "use client";
 
 import { ReactNode } from "react";
+import ScrollToTop from "@/components/ScrollToTop"; // adjust path
 
 interface LayoutProps {
   children: ReactNode;
@@ -8,6 +9,10 @@ interface LayoutProps {
 
 export default function Layout({ children }: LayoutProps) {
   return (
-    <main className="max-w-4xl mx-auto px-4 py-16 text-black">{children}</main>
+      <ScrollToTop>
+          <main className="max-w-4xl mx-auto px-4 py-16 text-black scroll-mt-24">
+              {children}
+          </main>
+      </ScrollToTop>
   );
 }
