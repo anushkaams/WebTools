@@ -55,6 +55,12 @@ export default function BlogPage() {
       description:
           "Discover how WebToolsSpace’s Lorem Ipsum generator helps web designers create better layouts and prototypes.",
       href: "/documentation/blog/lorem-ipsum-web-design-tips",
+    },
+    {
+      title: "How to Optimize Images for Web",
+      description:
+          "Large images can slow down your website, negatively impact SEO, and increase bandwidth usage. Optimizing images ensures your site loads faster while keeping visuals sharp and professional.",
+      href: "/documentation/blog/how-to-optimize-images-for-web",
     }
 
   ];

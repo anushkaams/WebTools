@@ -74,7 +74,7 @@ export default function Page() {
           Generate a Secure Password Instantly
         </h3>
         <p className="text-gray-700">
-          Create strong, random passwords with one click – no signup required.
+          Create strong, random passwords with one click - no signup required.
         </p>
         <a
             href="../tools/security/password-generator"

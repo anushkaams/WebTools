@@ -1,4 +1,4 @@
-import {Binary, BookOpen, Code2, FileText, KeyRound, Link2, QrCode, Type,} from "lucide-react";
+import {Binary, BookOpen, Code2, FileText, KeyRound, Link2, QrCode, Type, Image} from "lucide-react";
 
 export type Tool = {
     title: string;
@@ -31,10 +31,16 @@ export const toolCategories: ToolCategory[] = [
         description: "General-purpose productivity tools.",
     },
     {
+        id: "media",
+        title: "Media",
+        description: "Media tools"
+    },
+    {
         id: "documentation",
         title: "Documentation",
         description: "Docs and guides"
     },
+
 ];
 
 export const tools: Tool[] = [
@@ -88,10 +94,18 @@ export const tools: Tool[] = [
         category: "utility",
     },
     {
+        title: "Image Compressor",
+        description: "Compress images directly in your browser without losing quality.",
+        href: "/tools/media/image-compressor",
+        icon: Image,
+        category: "media",
+    },
+    {
         title: "Blog",
         href: "/documentation/blog",
         icon: BookOpen,
         category: "documentation",
         description: "Our blog articles"
     },
+
 ];

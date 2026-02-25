@@ -2,7 +2,7 @@ import WordCharacterCounter from "./WordCharacterCounter"; // your client compon
 
 // page.tsx (server component)
 export const metadata = {
-    title: "Online Word & Character Counter – Free Text Analyzer",
+    title: "Online Word & Character Counter - Free Text Analyzer",
     description:
         "Count words, characters, sentences, and paragraphs instantly with our free online word and character counter. Estimate reading and speaking time, analyze text, and copy results easily.",
     keywords: [
