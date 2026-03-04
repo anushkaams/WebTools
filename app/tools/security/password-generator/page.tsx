@@ -42,137 +42,190 @@ export default function PasswordGeneratorPage() {
     setTimeout(() => setCopied(false), 1500);
   };
 
+  // ✅ NEW: Password Strength Logic
+  const calculateStrength = (pwd: string) => {
+    if (!pwd) return { label: "", width: "0%", color: "" };
+
+    let score = 0;
+
+    if (pwd.length >= 8) score++;
+    if (pwd.length >= 12) score++;
+    if (/[A-Z]/.test(pwd)) score++;
+    if (/[a-z]/.test(pwd)) score++;
+    if (/[0-9]/.test(pwd)) score++;
+    if (/[^A-Za-z0-9]/.test(pwd)) score++;
+
+    if (score <= 2)
+      return { label: "Weak", width: "33%", color: "bg-red-500 text-red-500" };
+
+    if (score <= 4)
+      return {
+        label: "Medium",
+        width: "66%",
+        color: "bg-yellow-500 text-yellow-500",
+      };
+
+    return {
+      label: "Strong",
+      width: "100%",
+      color: "bg-green-600 text-green-600",
+    };
+  };
+
+  const strength = calculateStrength(password);
+
   return (
-    <main className="min-h-screen bg-gray-50">
-      <div className="max-w-4xl mx-auto px-6 py-16">
-        {/* SEO Heading */}
-        <h1 className="text-4xl font-bold text-gray-900 mb-4">
-          Online Password Generator – Create Strong & Secure Passwords
-        </h1>
+      <main className="min-h-screen bg-gray-50">
+        <div className="max-w-4xl mx-auto px-6 py-16">
+          {/* SEO Heading */}
+          <h1 className="text-4xl font-bold text-gray-900 mb-4">
+            Online Password Generator – Create Strong & Secure Passwords
+          </h1>
 
-        {/* SEO Description */}
-        <p className="text-gray-600 mb-6 leading-relaxed">
-          Generate strong, secure, and random passwords instantly with this free
-          online password generator. Customize length, include uppercase,
-          lowercase, numbers, and symbols to create passwords suitable for all
-          accounts, apps, and websites. Keep your data safe and secure!
-        </p>
-
-        {/* Feature List */}
-        <ul className="text-gray-600 mb-10 space-y-2 list-none">
-          <li className="flex items-start gap-2">
-            <span className="text-green-500">✔</span>
-            <span>Generate strong passwords up to 32 characters</span>
-          </li>
-          <li className="flex items-start gap-2">
-            <span className="text-green-500">✔</span>
-            <span>Include uppercase, lowercase, numbers, and symbols</span>
-          </li>
-          <li className="flex items-start gap-2">
-            <span className="text-green-500">✔</span>
-            <span>Copy passwords instantly with one click</span>
-          </li>
-          <li className="flex items-start gap-2">
-            <span className="text-green-500">✔</span>
-            <span>Fully client-side for privacy and security</span>
-          </li>
-        </ul>
-
-        {/* Blog Internal Link */}
-        <div className="mb-10 max-w-3xl rounded-xl border border-blue-100 bg-blue-50 p-5">
-          <h2 className="text-lg font-semibold text-gray-900 mb-2">
-            Want to learn how to use passwords safely?
-          </h2>
-          <p className="text-gray-700 mb-3">
-            Creating a strong password is only the first step. Learn best
-            practices to keep your accounts secure and avoid common mistakes.
+          {/* SEO Description */}
+          <p className="text-gray-600 mb-6 leading-relaxed">
+            Generate strong, secure, and random passwords instantly with this free
+            online password generator. Customize length, include uppercase,
+            lowercase, numbers, and symbols to create passwords suitable for all
+            accounts, apps, and websites. Keep your data safe and secure!
           </p>
-          <Link
-            href="/blog/how-to-create-strong-passwords"
-            className="inline-flex items-center gap-2 text-blue-600 font-semibold hover:underline"
-          >
-            Read: How to Create Strong & Secure Passwords →
-          </Link>
-        </div>
 
-        <div className="bg-white max-w-3xl rounded-2xl shadow-lg p-6 space-y-6">
-          {/* Password Output */}
-          <div className="flex items-center gap-2">
-            <input
-              type="text"
-              readOnly
-              value={password}
-              placeholder="Your secure password will appear here"
-              className="w-full px-4 py-3 rounded-lg border border-gray-200 text-gray-900 font-mono"
-              aria-label="Generated password output"
-            />
-            <button
-              onClick={copyToClipboard}
-              disabled={!password}
-              className="p-3 rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition disabled:opacity-50"
-              aria-label="Copy password to clipboard"
+          {/* Feature List */}
+          <ul className="text-gray-600 mb-10 space-y-2 list-none">
+            <li className="flex items-start gap-2">
+              <span className="text-green-500">✔</span>
+              <span>Generate strong passwords up to 32 characters</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="text-green-500">✔</span>
+              <span>Include uppercase, lowercase, numbers, and symbols</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="text-green-500">✔</span>
+              <span>Copy passwords instantly with one click</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="text-green-500">✔</span>
+              <span>Fully client-side for privacy and security</span>
+            </li>
+          </ul>
+
+          {/* Blog Internal Link */}
+          <div className="mb-10 max-w-3xl rounded-xl border border-blue-100 bg-blue-50 p-5">
+            <h2 className="text-lg font-semibold text-gray-900 mb-2">
+              Want to learn how to use passwords safely?
+            </h2>
+            <p className="text-gray-700 mb-3">
+              Creating a strong password is only the first step. Learn best
+              practices to keep your accounts secure and avoid common mistakes.
+            </p>
+            <Link
+                href="/documentation/blog/how-to-create-strong-passwords"
+                className="inline-flex items-center gap-2 text-blue-600 font-semibold hover:underline"
             >
-              {copied ? <Check size={18} /> : <Copy size={18} />}
+              Read: How to Create Strong & Secure Passwords →
+            </Link>
+          </div>
+
+          <div className="bg-white max-w-3xl rounded-2xl shadow-lg p-6 space-y-6">
+            {/* Password Output */}
+            <div className="flex items-center gap-2">
+              <input
+                  type="text"
+                  readOnly
+                  value={password}
+                  placeholder="Your secure password will appear here"
+                  className="w-full px-4 py-3 rounded-lg border border-gray-200 text-gray-900 font-mono"
+                  aria-label="Generated password output"
+              />
+              <button
+                  onClick={copyToClipboard}
+                  disabled={!password}
+                  className="p-3 rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition disabled:opacity-50"
+                  aria-label="Copy password to clipboard"
+              >
+                {copied ? <Check size={18} /> : <Copy size={18} />}
+              </button>
+            </div>
+
+            {/* ✅ NEW: Password Strength Indicator */}
+            {password && (
+                <div className="space-y-2">
+                  <div className="flex justify-between text-sm font-medium">
+                    <span>Password Strength</span>
+                    <span className={strength.color.split(" ")[1]}>
+                  {strength.label}
+                </span>
+                  </div>
+
+                  <div className="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
+                    <div
+                        className={`h-full transition-all duration-300 ${
+                            strength.color.split(" ")[0]
+                        }`}
+                        style={{ width: strength.width }}
+                    />
+                  </div>
+                </div>
+            )}
+
+            {/* Password Length */}
+            <div>
+              <label
+                  className="flex justify-between text-sm font-medium text-gray-700 mb-2"
+                  htmlFor="password-length"
+              >
+                Length
+                <span className="text-blue-600">{length}</span>
+              </label>
+              <input
+                  type="range"
+                  id="password-length"
+                  min={6}
+                  max={32}
+                  value={length}
+                  onChange={(e) => setLength(Number(e.target.value))}
+                  className="w-full"
+                  aria-valuemin={6}
+                  aria-valuemax={32}
+                  aria-valuenow={length}
+              />
+            </div>
+
+            {/* Options */}
+            <div className="grid grid-cols-2 gap-4 text-sm">
+              {[
+                { label: "Uppercase (A-Z)", state: uppercase, set: setUppercase },
+                { label: "Lowercase (a-z)", state: lowercase, set: setLowercase },
+                { label: "Numbers (0-9)", state: numbers, set: setNumbers },
+                { label: "Symbols (!@#$)", state: symbols, set: setSymbols },
+              ].map((opt) => (
+                  <label
+                      key={opt.label}
+                      className="flex items-center gap-2 cursor-pointer"
+                  >
+                    <input
+                        type="checkbox"
+                        checked={opt.state}
+                        onChange={(e) => opt.set(e.target.checked)}
+                        className="accent-blue-600"
+                    />
+                    {opt.label}
+                  </label>
+              ))}
+            </div>
+
+            {/* Generate Button */}
+            <button
+                onClick={generatePassword}
+                className="w-full flex items-center justify-center gap-2 bg-blue-600 text-white py-3 rounded-xl font-semibold hover:bg-blue-700 transition"
+                aria-label="Generate secure password"
+            >
+              <RefreshCcw size={18} />
+              Generate Password
             </button>
           </div>
-
-          {/* Password Length */}
-          <div>
-            <label
-              className="flex justify-between text-sm font-medium text-gray-700 mb-2"
-              htmlFor="password-length"
-            >
-              Length
-              <span className="text-blue-600">{length}</span>
-            </label>
-            <input
-              type="range"
-              id="password-length"
-              min={6}
-              max={32}
-              value={length}
-              onChange={(e) => setLength(Number(e.target.value))}
-              className="w-full"
-              aria-valuemin={6}
-              aria-valuemax={32}
-              aria-valuenow={length}
-            />
-          </div>
-
-          {/* Options */}
-          <div className="grid grid-cols-2 gap-4 text-sm">
-            {[
-              { label: "Uppercase (A-Z)", state: uppercase, set: setUppercase },
-              { label: "Lowercase (a-z)", state: lowercase, set: setLowercase },
-              { label: "Numbers (0-9)", state: numbers, set: setNumbers },
-              { label: "Symbols (!@#$)", state: symbols, set: setSymbols },
-            ].map((opt) => (
-              <label
-                key={opt.label}
-                className="flex items-center gap-2 cursor-pointer"
-              >
-                <input
-                  type="checkbox"
-                  checked={opt.state}
-                  onChange={(e) => opt.set(e.target.checked)}
-                  className="accent-blue-600"
-                />
-                {opt.label}
-              </label>
-            ))}
-          </div>
-
-          {/* Generate Button */}
-          <button
-            onClick={generatePassword}
-            className="w-full flex items-center justify-center gap-2 bg-blue-600 text-white py-3 rounded-xl font-semibold hover:bg-blue-700 transition"
-            aria-label="Generate secure password"
-          >
-            <RefreshCcw size={18} />
-            Generate Password
-          </button>
         </div>
-      </div>
-    </main>
+      </main>
   );
 }
