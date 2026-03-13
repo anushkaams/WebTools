@@ -1,16 +1,17 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { Download } from "lucide-react";
+import {useState, useEffect} from "react";
+import {Download} from "lucide-react";
 import Link from "next/link";
-import { Rnd } from "react-rnd";
+import {Rnd} from "react-rnd";
 
 export default function ImageResizerPage() {
     const [imageSrc, setImageSrc] = useState<string | null>(null);
     const [resizedUrl, setResizedUrl] = useState<string | null>(null);
     const [size, setSize] = useState<{ width: number; height: number } | null>(null);
+    const [originalSize, setOriginalSize] = useState({ width: 0, height: 0 });
 
-    const [maxArea, setMaxArea] = useState({ width: 800, height: 500 });
+    const [maxArea, setMaxArea] = useState({width: 800, height: 500});
 
     // Update max area based on viewport
     useEffect(() => {
@@ -36,6 +37,8 @@ export default function ImageResizerPage() {
 
             img.onload = () => {
                 // Scale image to fit max area if too big
+                setOriginalSize({ width: img.naturalWidth, height: img.naturalHeight });
+                setSize({ width: img.naturalWidth, height: img.naturalHeight }); // initial Rnd size
                 const scaleX = img.naturalWidth > maxArea.width ? maxArea.width / img.naturalWidth : 1;
                 const scaleY = img.naturalHeight > maxArea.height ? maxArea.height / img.naturalHeight : 1;
                 const scale = Math.min(scaleX, scaleY);
@@ -62,9 +65,14 @@ export default function ImageResizerPage() {
             const ctx = canvas.getContext("2d");
             if (!ctx) return;
 
-            // ✅ Download will match Rnd box size exactly (may stretch)
-            canvas.width = size.width;
-            canvas.height = size.height;
+            // Determine scale to fit within Rnd box while preserving aspect ratio
+            const scaleX = size.width / img.naturalWidth;
+            const scaleY = size.height / img.naturalHeight;
+            const scale = Math.min(scaleX, scaleY, 1); // don't upscale beyond original
+
+            canvas.width = Math.round(img.naturalWidth * scale);
+            canvas.height = Math.round(img.naturalHeight * scale);
+
             ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
 
             canvas.toBlob(
@@ -79,6 +87,13 @@ export default function ImageResizerPage() {
         };
     };
 
+    const getActualSize = (rndWidth: number, rndHeight: number, imgWidth: number, imgHeight: number) => {
+        const scaleX = rndWidth / imgWidth;
+        const scaleY = rndHeight / imgHeight;
+        const scale = Math.min(scaleX, scaleY, 1);
+        return { width: Math.round(imgWidth * scale), height: Math.round(imgHeight * scale) };
+    };
+
     return (
         <main className="min-h-screen bg-gray-50">
             <div className="max-w-4xl mx-auto px-6 py-16">
@@ -89,7 +104,8 @@ export default function ImageResizerPage() {
 
                 {/* SEO Description */}
                 <p className="text-gray-600 mb-6 leading-relaxed">
-                    Resize images visually by dragging corners. Maintain original resolution and scale to fit your screen.
+                    Resize images visually by dragging corners. Maintain original resolution and scale to fit your
+                    screen.
                     Free, fast, and secure online tool for web optimization.
                 </p>
 
@@ -122,16 +138,18 @@ export default function ImageResizerPage() {
                         <div className="flex flex-col items-center gap-6">
                             {/* Current Size */}
                             <div className="text-sm text-gray-600">
-                                Current Size: <strong>{Math.round(size.width)}px × {Math.round(size.height)}px</strong>
+                                Current Size: <strong>
+                                {imageSrc && size ? `${getActualSize(size.width, size.height, originalSize.width, originalSize.height).width}px × ${getActualSize(size.width, size.height, originalSize.width, originalSize.height).height}px` : "--"}
+                            </strong>
                             </div>
 
                             {/* Resize Area */}
                             <div
                                 className="relative w-full border rounded-lg bg-gray-100 flex items-center justify-center overflow-auto"
-                                style={{ height: maxArea.height }}
+                                style={{height: maxArea.height}}
                             >
                                 <Rnd
-                                    size={{ width: size.width, height: size.height }}
+                                    size={{width: size.width, height: size.height}}
                                     minWidth={50}
                                     minHeight={50}
                                     lockAspectRatio={false}
@@ -146,7 +164,7 @@ export default function ImageResizerPage() {
                                     <img
                                         src={imageSrc}
                                         alt="Resizable preview"
-                                        style={{ width: "100%", height: "100%", objectFit: "contain" }}
+                                        style={{width: "100%", height: "100%", objectFit: "contain"}}
                                     />
                                 </Rnd>
                             </div>
@@ -156,7 +174,7 @@ export default function ImageResizerPage() {
                                 onClick={handleDownload}
                                 className="w-full flex items-center justify-center gap-2 bg-blue-600 text-white py-3 rounded-xl font-semibold hover:bg-blue-700 transition"
                             >
-                                <Download size={18} /> Generate Resized Image
+                                <Download size={18}/> Generate Resized Image
                             </button>
                         </div>
                     )}
@@ -167,7 +185,7 @@ export default function ImageResizerPage() {
                             download="resized-image.jpg"
                             className="w-full flex items-center justify-center gap-2 bg-green-600 text-white py-3 rounded-xl font-semibold hover:bg-green-700 transition"
                         >
-                            <Download size={18} /> Download Resized Image
+                            <Download size={18}/> Download Resized Image
                         </a>
                     )}
                 </div>
