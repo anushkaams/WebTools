@@ -117,6 +117,20 @@ export default function Page() {
                     Try Image Compressor →
                 </a>
             </div>
+            <div className="mt-12 rounded-xl border border-blue-100 bg-blue-50 p-8 text-center space-y-4">
+                <h3 className="text-2xl font-semibold text-gray-900">
+                    Resize Your Images Instantly
+                </h3>
+                <p className="text-gray-700">
+                    Resize image file size directly in your browser - fast, free, and privacy-friendly.
+                </p>
+                <a
+                    href="../../tools/media/image-resizer"
+                    className="inline-block rounded-lg bg-blue-600 px-6 py-3 text-lg font-medium text-white hover:bg-blue-700 transition"
+                >
+                    Try Image Resizer →
+                </a>
+            </div>
         </article>
     );
 }

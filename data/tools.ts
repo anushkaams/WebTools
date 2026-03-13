@@ -101,6 +101,13 @@ export const tools: Tool[] = [
         category: "media",
     },
     {
+        title: "Image Resizer",
+        description: "Resize images directly in your browser without losing quality.",
+        href: "/tools/media/image-resizer",
+        icon: Image,
+        category: "media",
+    },
+    {
         title: "Blog",
         href: "/documentation/blog",
         icon: BookOpen,
