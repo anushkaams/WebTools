@@ -16,24 +16,24 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     return (
         <html lang="en">
         <head>
-            {/* Google Analytics - server-rendered so detection works */}
-            <script
-                async
-                src="https://www.googletagmanager.com/gtag/js?id=G-RX3HB8JKLW"
-            ></script>
+            <meta name="viewport" content="width=device-width, initial-scale=1" />
+            <title>WebTools</title>
+
+            {/* ---------------- Google Tag (server-rendered) ---------------- */}
+            <script async src="https://www.googletagmanager.com/gtag/js?id=G-RX3HB8JKLW"></script>
             <script
                 dangerouslySetInnerHTML={{
                     __html: `
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
-              gtag('config', 'G-RX3HB8JKLW', { page_path: window.location.pathname });
+              gtag('config', 'G-RX3HB8JKLW');
             `,
                 }}
             />
         </head>
         <body className="min-h-screen flex flex-col bg-gray-50">
-        {/* Track SPA pageviews */}
+        {/* SPA pageview tracking */}
         <AnalyticsTracker />
 
         {/* Navbar */}
@@ -48,7 +48,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {/* Footer */}
         <Footer />
 
-        {/* Google Adsense */}
+        {/* ---------------- Google Adsense ---------------- */}
         <Script
             async
             src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8839810575741990"
