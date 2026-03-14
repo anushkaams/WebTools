@@ -1,43 +1,52 @@
+// app/layout.tsx
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import BuyMeACoffee from "@/components/BuyMeACoffee";
 import "./globals.css";
 import Script from "next/script";
-import Head from "next/head";
 import AnalyticsTracker from "./AnalyticsTracker";
-import BuyMeACoffee from "@/components/BuyMeACoffee";
-import GoogleAnalytics from "@/app/GoogleAnalytics";
 
 export const metadata = {
     title: "WebTools",
     description: "Your all-in-one online tools hub",
-    icons: {
-        icon: "/favicon.ico",
-    },
+    icons: { icon: "/favicon.ico" },
 };
 
-export default function RootLayout({
-                                       children,
-                                   }: {
-    children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
     return (
         <html lang="en">
-        <Head>
-            {/* Google Site Verification */}
-            <meta
-                name="google-site-verification"
-                content="9JzXDaah5gKJwBURGbXZlZ5ufO5ZFQ8qLnZS8a0Z4K8"
+        <head>
+            {/* Google Analytics - server-rendered so detection works */}
+            <script
+                async
+                src="https://www.googletagmanager.com/gtag/js?id=G-RX3HB8JKLW"
+            ></script>
+            <script
+                dangerouslySetInnerHTML={{
+                    __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-RX3HB8JKLW', { page_path: window.location.pathname });
+            `,
+                }}
             />
-
-        </Head>
+        </head>
         <body className="min-h-screen flex flex-col bg-gray-50">
-        <GoogleAnalytics />
-        <AnalyticsTracker/>
-        <Navbar/>
+        {/* Track SPA pageviews */}
+        <AnalyticsTracker />
 
+        {/* Navbar */}
+        <Navbar />
+
+        {/* Main content */}
         <main className="flex-1 mt-20">{children}</main>
-        <BuyMeACoffee/>
-        <Footer/>
+
+        {/* Buy Me a Coffee */}
+        <BuyMeACoffee />
+
+        {/* Footer */}
+        <Footer />
 
         {/* Google Adsense */}
         <Script
