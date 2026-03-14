@@ -17,38 +17,36 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <html lang="en">
         <head>
             <meta name="viewport" content="width=device-width, initial-scale=1" />
-            <title>WebTools</title>
-
-            {/* ---------------- Google Tag (server-rendered) ---------------- */}
-            <script async src="https://www.googletagmanager.com/gtag/js?id=G-RX3HB8JKLW"></script>
-            <script
-                dangerouslySetInnerHTML={{
-                    __html: `
+            {/* Don’t put <title> here; metadata already handles it */}
+        </head>
+        <body className="min-h-screen flex flex-col bg-gray-50">
+        {/* Google tag (gtag.js) */}
+        <Script
+            src="https://www.googletagmanager.com/gtag/js?id=G-RX3HB8JKLW"
+            strategy="afterInteractive"
+        />
+        <Script
+            id="gtag-init"
+            strategy="afterInteractive"
+            dangerouslySetInnerHTML={{
+                __html: `
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
               gtag('config', 'G-RX3HB8JKLW');
             `,
-                }}
-            />
-        </head>
-        <body className="min-h-screen flex flex-col bg-gray-50">
+            }}
+        />
+
         {/* SPA pageview tracking */}
         <AnalyticsTracker />
 
-        {/* Navbar */}
         <Navbar />
-
-        {/* Main content */}
         <main className="flex-1 mt-20">{children}</main>
-
-        {/* Buy Me a Coffee */}
         <BuyMeACoffee />
-
-        {/* Footer */}
         <Footer />
 
-        {/* ---------------- Google Adsense ---------------- */}
+        {/* Google Adsense */}
         <Script
             async
             src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8839810575741990"
