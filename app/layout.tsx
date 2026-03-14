@@ -5,6 +5,7 @@ import Script from "next/script";
 import Head from "next/head";
 import AnalyticsTracker from "./AnalyticsTracker";
 import BuyMeACoffee from "@/components/BuyMeACoffee";
+import GoogleAnalytics from "@/app/GoogleAnalytics";
 
 export const metadata = {
     title: "WebTools",
@@ -30,23 +31,7 @@ export default function RootLayout({
 
         </Head>
         <body className="min-h-screen flex flex-col bg-gray-50">
-        {/* Google Analytics */}
-        <Script
-            src={`https://www.googletagmanager.com/gtag/js?id=G-RX3HB8JKLW`}
-            strategy="afterInteractive"
-        />
-        <Script id="google-analytics" strategy="afterInteractive">
-            {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-
-            gtag('config', 'G-RX3HB8JKLW', {
-              page_path: window.location.pathname,
-            });
-          `}
-        </Script>
-        {/* Track SPA pageviews */}
+        <GoogleAnalytics />
         <AnalyticsTracker/>
         <Navbar/>
 
