@@ -4,7 +4,7 @@ import Footer from "@/components/Footer";
 import BuyMeACoffee from "@/components/BuyMeACoffee";
 import "./globals.css";
 import Script from "next/script";
-import AnalyticsTracker from "./AnalyticsTracker";
+import {GoogleAnalytics} from "@next/third-parties/google";
 
 export const metadata = {
     title: "WebTools",
@@ -38,9 +38,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             }}
         />
 
-        {/* SPA pageview tracking */}
-        <AnalyticsTracker />
-
         <Navbar />
         <main className="flex-1 mt-20">{children}</main>
         <BuyMeACoffee />
@@ -54,6 +51,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             strategy="afterInteractive"
         />
         </body>
+        <GoogleAnalytics gaId="G-YP21Y8DP1B" />
         </html>
     );
 }
