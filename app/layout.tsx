@@ -51,7 +51,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             strategy="afterInteractive"
         />
         </body>
-        <GoogleAnalytics gaId="G-YP21Y8DP1B" />
+        <GoogleAnalytics gaId="G-C79348L1H7" />
         </html>
     );
 }
